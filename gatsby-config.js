@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `readers clubr`,
+    description: `readers club - Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quas dolores sint molestias expedita in vero, consequatur blanditiis explicabo maxime.`,
+    author: `@digital_genetics`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -11,6 +11,31 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: 'gatsby-firesource',
+      options: {
+        credential: require("./firebase.json"),
+        types: [
+          {
+            type: 'Books',
+            collection: 'books',
+            map: doc => ({
+              title: doc.title,
+              summary: doc.summary,
+              author___NODE: doc.author.id,  // author references for graphQL
+            }),
+          },
+          {
+            type: 'Authors',
+            collection: 'authors',
+            map: doc => ({
+              name: doc.name,
+              // books___NODE: doc.books.map(book => book.id),
+            }),
+          },
+        ],
       },
     },
     `gatsby-transformer-sharp`,

@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `readers clubr`,
+    title: `Book readers club`,
     description: `readers club - Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quas dolores sint molestias expedita in vero, consequatur blanditiis explicabo maxime.`,
     author: `@digital_genetics`,
   },

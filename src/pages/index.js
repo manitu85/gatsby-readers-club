@@ -1,8 +1,10 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "components/layout"
+import SEO from "components/seo"
+import { BookItem } from 'components/common'
+
 
 const IndexPage = ({ data }) => {
 
@@ -14,13 +16,13 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
       {
         books.map(({ node: book }) => (
-          <div key={book.id}>
+          <BookItem key={book.id}>
             <h1>{book.title} - <small>{book.author.name}</small> </h1>
             <p>{book.summary}</p>
             <Link to={`/books/${book.id}`} >
               Join conversation
             </Link>
-          </div>
+          </BookItem>
         ))
       }
     </Layout>

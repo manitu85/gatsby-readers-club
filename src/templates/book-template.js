@@ -1,11 +1,24 @@
 import React from 'react'
+import Layout from 'components/layout'
 
-const bookTemplate = () => {
+import { BookItem } from 'components/common'
+
+
+const BookTemplate = ({ pageContext }) => {
+
+  // console.log('pageContext :>> ', pageContext);
+  const { title, author, summary } = pageContext
+
   return (
-    <div>
-      <h1>BOOK TEMPLATE</h1>
-    </div>
+    <Layout>
+      <BookItem>
+        <h2>
+          {title} - <small>{author.name}</small>
+        </h2>
+        <p>{summary}</p>
+      </BookItem>
+    </Layout>
   )
 }
 
-export default bookTemplate
+export default BookTemplate

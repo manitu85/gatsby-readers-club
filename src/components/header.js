@@ -1,21 +1,18 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import PropTypes from "prop-types"
+import { Link } from "gatsby"
+
+import Container from 'components/common/container.styled'
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
+      background: `#500961`,
       marginBottom: `1.45rem`,
+      padding: `1rem 0`
     }}
   >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
+    <Container>
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
@@ -27,7 +24,7 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
-    </div>
+    </Container>
   </header>
 )
 

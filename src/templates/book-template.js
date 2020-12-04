@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from 'components/layout'
+import Layout from 'components/layout/layout'
 
 import { BookItem } from 'components/common'
 
@@ -11,11 +11,11 @@ const BookTemplate = ({ pageContext }) => {
 
   return (
     <Layout>
-      <BookItem>
-        <h2>
-          {title} - <small>{author.name}</small>
-        </h2>
-        <p>{summary}</p>
+      <BookItem
+        authorName={author.name}
+        bookTitle={title}
+        bookSummary={summary}
+      >
       </BookItem>
     </Layout>
   )

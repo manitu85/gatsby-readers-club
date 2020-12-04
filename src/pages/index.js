@@ -1,9 +1,10 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 
-import Layout from "components/layout"
-import SEO from "components/seo"
+import Layout from "components/layout/layout"
+import SEO from "components/seo/seo"
 import { BookItem } from 'components/common'
+import styled from 'styled-components'
 
 
 const IndexPage = ({ data }) => {
@@ -16,12 +17,17 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
       {
         books.map(({ node: book }) => (
-          <BookItem key={book.id}>
-            <h1>{book.title} - <small>{book.author.name}</small> </h1>
-            <p>{book.summary}</p>
-            <Link to={`/books/${book.id}`} >
-              Join conversation
-            </Link>
+          <BookItem
+            key={book.id}
+            authorName={book.author.name}
+            bookTitle={book.title}
+            bookSummary={book.summary}
+          >
+            <LinkButton>
+              <Link to={`/books/${book.id}`} >
+                Join conversation
+              </Link>
+            </LinkButton>
           </BookItem>
         ))
       }
@@ -47,3 +53,19 @@ export const query = graphql`
 `
 
 export default IndexPage
+
+
+const LinkButton = styled.div`
+  text-align: right;
+
+  a {
+    padding: 8px;
+    background: #500961;
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+        background: #270530;
+    }
+  }
+`

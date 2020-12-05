@@ -41,7 +41,7 @@ module.exports = {
             map: doc => ({
               title: doc.title,
               summary: doc.summary,
-              // author___NODE: doc.author.id,  // author references for graphQL
+              imageUrl: doc.imageUrl,
               author___NODE: doc.author.id,  // author references for graphQL
             }),
           },

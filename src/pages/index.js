@@ -19,6 +19,8 @@ const IndexPage = ({ data }) => {
         books.map(({ node: book }) => (
           <BookItem
             key={book.id}
+            bookCover={book.imageUrl}
+            debugger
             authorName={book.author.name}
             bookTitle={book.title}
             bookSummary={book.summary}
@@ -43,6 +45,7 @@ export const query = graphql`
           id
           title
           summary
+          imageUrl
           author {
             name
           }

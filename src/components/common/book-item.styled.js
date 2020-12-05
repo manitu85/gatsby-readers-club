@@ -2,13 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-const BookItem = ({ authorName, bookTitle, bookSummary, children }) => (
+const BookItem = ({ bookCover, authorName, bookTitle, bookSummary, children }) => (
   <BookItemWrapper>
-    <h2>
-      {bookTitle}   - <small>{authorName}</small>
-    </h2>
-    <p>{bookSummary}</p>
-    {children}
+    <BookItemImage>
+      <img src={bookCover} alt='book' />
+    </BookItemImage>
+    <BookItemContent>
+      <h2>
+        {bookTitle} - <small>{authorName}</small>
+      </h2>
+      <p>{bookSummary}</p>
+      {children}
+    </BookItemContent>
   </BookItemWrapper>
 )
 
@@ -18,6 +23,8 @@ const BookItemWrapper = styled.section`
   border: 2px solid #e1e1e1;
   padding: 2rem;
   margin-bottom: 10px;
+
+  display: flex;
 
   h2 {
     text-transform: uppercase;
@@ -32,3 +39,16 @@ const BookItemWrapper = styled.section`
   }
 
 `;
+
+const BookItemImage = styled.div`
+  width: 250px;
+  img {
+    max-width: 100%;
+    display: block;
+  }
+`
+
+const BookItemContent = styled.div`
+  padding-left: 2rem;
+  flex: 1;
+`

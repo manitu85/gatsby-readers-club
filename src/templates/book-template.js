@@ -7,11 +7,12 @@ import { BookItem } from 'components/common'
 const BookTemplate = ({ pageContext }) => {
 
   // console.log('pageContext :>> ', pageContext);
-  const { title, author, summary } = pageContext
+  const { title, author, summary, imageUrl } = pageContext
 
   return (
     <Layout>
       <BookItem
+        bookCover={imageUrl}
         authorName={author.name}
         bookTitle={title}
         bookSummary={summary}

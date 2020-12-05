@@ -10,11 +10,6 @@ exports.createPages = async ({ graphql, reporter, actions: { createPage } }) => 
         edges {
           node {
             id
-            title
-            summary
-            author {
-              name
-            }
           }
         }
       }
@@ -34,7 +29,9 @@ exports.createPages = async ({ graphql, reporter, actions: { createPage } }) => 
     createPage({
       path: `/books/${book.id}`,
       component: bookTemplate,
-      context: book
+      context: {
+        bookId: book.id
+      }
     })
   })
 

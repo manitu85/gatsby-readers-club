@@ -19,8 +19,7 @@ const IndexPage = ({ data }) => {
         books.map(({ node: book }) => (
           <BookItem
             key={book.id}
-            bookCover={book.imageUrl}
-            debugger
+            bookCover={book.localImage.childImageSharp.fixed}
             authorName={book.author.name}
             bookTitle={book.title}
             bookSummary={book.summary}
@@ -45,7 +44,13 @@ export const query = graphql`
           id
           title
           summary
-          imageUrl
+          localImage{
+            childImageSharp {
+              fixed(width: 250, webpQuality: 100){
+                ...GatsbyImageSharpFixed_withWebp
+              }
+            }
+          }
           author {
             name
           }

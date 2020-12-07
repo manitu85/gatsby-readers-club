@@ -13,6 +13,16 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
+      resolve: "gatsby-plugin-root-import",
+      options: {
+        src: path.join(__dirname, "src"),
+        assets: path.join(__dirname, "src/assets"),
+        components: path.join(__dirname, "src/components"),
+        pages: path.join(__dirname, "src/pages"),
+        templates: path.join(__dirname, "src/templates"),
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,

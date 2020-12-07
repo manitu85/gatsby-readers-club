@@ -38,10 +38,26 @@ exports.createPages = async ({ graphql, reporter, actions: { createPage } }) => 
 }
 
 // For absolute imports
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    },
-  });
-};
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   actions.setWebpackConfig({
+//     resolve: {
+//       modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+//     },
+//   })
+// }
+
+exports.onCreateWebpackConfig = ({ actions, stage }) => {
+  if (stage === "develop-html" || stage === "build-html") {
+    actions.setWebpackConfig({
+      resolve: {
+        mainFields: ["main"],
+      },
+    })
+  } else {
+    actions.setWebpackConfig({
+      resolve: {
+        mainFields: ["browser", "module", "main"],
+      },
+    })
+  }
+}

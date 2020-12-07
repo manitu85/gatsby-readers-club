@@ -5,8 +5,10 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "axios": "^0.21.0",
     "babel-plugin-styled-components": "^1.12.0",
     "dotenv": "^8.2.0",
+    "firebase": "^7.24.0",
     "gatsby": "^2.26.1",
     "gatsby-firesource": "^2.0.3",
     "gatsby-image": "^2.5.0",
@@ -26,6 +28,7 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "gatsby-plugin-root-import": "^2.0.5",
     "prettier": "2.1.2"
   },
   "keywords": [

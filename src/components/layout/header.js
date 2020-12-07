@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
 import Container from 'components/common/container.styled'
+import { FirebaseContext } from 'src/firebase'
+
 
 const Header = ({ siteTitle }) => (
   <header
@@ -24,6 +26,14 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+      <FirebaseContext.Consumer>
+        {
+          props => {
+            console.log('CONTEXT_PROPS :>> ', props);
+            return <div />
+          }
+        }
+      </FirebaseContext.Consumer>
     </Container>
   </header>
 )

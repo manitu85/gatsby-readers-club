@@ -1,18 +1,17 @@
 import React from 'react'
-import Layout from 'components/layout/layout'
 import { graphql } from 'gatsby'
 
 import { BookItem } from 'components/common'
 
 
 const BookTemplate = ({ data }) => {
-  console.log(data)
 
+  // console.log(data)
   // console.log('pageContext :>> ', pageContext);
-  const { title, author, summary, localImage } = data.books
+  const { title, author, summary, localImage } = data.book
 
   return (
-    <Layout>
+    <section>
       <BookItem
         bookCover={localImage.childImageSharp.fixed}
         authorName={author.name}
@@ -20,7 +19,7 @@ const BookTemplate = ({ data }) => {
         bookSummary={summary}
       >
       </BookItem>
-    </Layout>
+    </section>
   )
 }
 
@@ -28,8 +27,7 @@ export default BookTemplate
 
 export const query = graphql`
   query BookQuery($bookId: String!) {
-    books(id: {eq: $bookId}) {
-      id
+    book(id: {eq: $bookId}) {
       title
       summary
       localImage{

@@ -1,12 +1,15 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import { navigate } from 'gatsby'
 
-import Layout from "components/layout/layout"
 import SEO from "components/seo/seo"
-import { useAuth } from "src/firebase"
+import { FirebaseContext } from 'src/firebase'
+import { Form, Label, Input, Button } from 'components/common'
+
 
 const Login = () => {
 
-  const { firebase } = useAuth()
+  // const { firebase } = useAuth()
+  const { firebase } = useContext(FirebaseContext)
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -18,7 +21,7 @@ const Login = () => {
     firebase.login({
       email: form.email,
       password: form.password
-    })
+    }).then(() => navigate('/'))
   }
 
   const handleChange = e => {
@@ -31,12 +34,12 @@ const Login = () => {
   }
 
   return (
-    <Layout>
+    <section>
       <SEO title="login" />
-      <form onSubmit={handleSubmit} >
+      <Form onSubmit={handleSubmit} >
 
-        <label htmlFor='email'>Email</label>
-        <input
+        <Label htmlFor='email'>Email</Label>
+        <Input
           type='email'
           name='email'
           placeholder='email'
@@ -44,8 +47,8 @@ const Login = () => {
           onChange={handleChange}
         />
 
-        <label htmlFor='password'>Password</label>
-        <input
+        <Label htmlFor='password'>Password</Label>
+        <Input
           type='password'
           name='password'
           placeholder='password'
@@ -53,10 +56,13 @@ const Login = () => {
           onChange={handleChange}
         />
 
-        <button type='submit'>Login</button>
+        <Button
+          type='submit'
+          block
+        >Login</Button>
 
-      </form>
-    </Layout>
+      </Form>
+    </section>
   )
 }
 

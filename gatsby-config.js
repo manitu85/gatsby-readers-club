@@ -46,7 +46,7 @@ module.exports = {
         },
         types: [
           {
-            type: 'Books',
+            type: 'Book',
             collection: 'books',
             map: doc => ({
               title: doc.title,
@@ -56,7 +56,7 @@ module.exports = {
             }),
           },
           {
-            type: 'Authors',
+            type: 'Author',
             collection: 'authors',
             map: doc => ({
               name: doc.name,
@@ -69,7 +69,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-remote-images`,
       options: {
-        nodeType: 'Books',
+        nodeType: 'Book',
         imagePath: 'imageUrl',
       },
     },

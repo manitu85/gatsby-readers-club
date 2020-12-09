@@ -6,7 +6,7 @@ const bookTemplate = path.resolve('./src/templates/book-template.js')
 exports.createPages = async ({ graphql, reporter, actions: { createPage } }) => {
   const res = await graphql(`
     {
-      allBooks (limit: 1000){
+      allBook (limit: 1000){
         edges {
           node {
             id
@@ -23,7 +23,7 @@ exports.createPages = async ({ graphql, reporter, actions: { createPage } }) => 
   }
 
   // dynamically create pages
-  const books = res.data.allBooks.edges
+  const books = res.data.allBook.edges
 
   books.forEach(({ node: book }) => {
     createPage({

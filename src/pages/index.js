@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 
-import Layout from "components/layout/layout"
 import SEO from "components/seo/seo"
 import { BookItem } from 'components/common'
 import styled from 'styled-components'
@@ -9,11 +8,11 @@ import styled from 'styled-components'
 
 const IndexPage = ({ data }) => {
 
-  const books = data.allBooks.edges
+  const books = data.allBook.edges
   // console.log('data :>> ', books)
 
   return (
-    <Layout>
+    <section>
       <SEO title="Home" />
       {
         books.map(({ node: book }) => (
@@ -32,13 +31,13 @@ const IndexPage = ({ data }) => {
           </BookItem>
         ))
       }
-    </Layout>
+    </section>
   )
 }
 
 export const query = graphql`
 {
-  allBooks {
+  allBook {
       edges {
         node {
           id

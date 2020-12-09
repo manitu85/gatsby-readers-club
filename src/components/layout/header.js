@@ -30,25 +30,27 @@ const Header = ({ siteTitle }) => {
           </Link>
         </h1>
         <div>
-          <div>
-            {!!user && !!user.email &&
-              <UserInfo>
-                Hello, {user.username || user.email}
-                <div>
-                  <LogoutLink onClick={handleLogout}>
-                    Logout
+          {!!user && !!user.email &&
+            <UserInfo>
+              Hello, {user.username || user.email}
+              <div>
+                <LogoutLink onClick={handleLogout}>
+                  Logout
                 </LogoutLink>
-                </div>
-              </UserInfo>
-            }
-            {(!user || !user.email) &&
-              <LoginLink>
-                <Link to="/login">
-                  Login
-              </Link>
+              </div>
+            </UserInfo>
+          }
+          {(!user || !user.email) &&
+            <>
+              <LoginLink to="/login">
+                Login
               </LoginLink>
-            }
-          </div>
+              <Divider />
+              <RegisterLink to="/register">
+                Register
+              </RegisterLink>
+            </>
+          }
         </div>
       </HeaderContent>
     </HeaderWrapper>
@@ -66,9 +68,33 @@ Header.defaultProps = {
 
 export default Header
 
+
+
 const LogoutLink = styled.span`
   color: white;
+  text-decoration: none;
   cursor:pointer;
+
+  &:hover{
+    text-decoration: underline;
+  }
+`
+
+const LoginLink = styled(Link)`
+  color:white;
+  margin: auto 0;
+  text-decoration: none;
+
+  &:hover{
+    text-decoration: underline;
+  }
+
+`
+
+const RegisterLink = styled(Link)`
+  color: white;
+  cursor:pointer;
+  text-decoration: none;
 
   &:hover{
     text-decoration: underline;
@@ -104,13 +130,6 @@ const HeaderContent = styled.div`
 const UserInfo = styled.div`
   text-align: right;
   color: white;
-`
-
-const LoginLink = styled.div`
-  margin: auto 0;
-  a{
-    color:white;
-  }
 `
 
 const Divider = styled.span`

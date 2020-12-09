@@ -6,20 +6,24 @@ import { FirebaseContext } from 'src/firebase'
 import { Form, Label, Input, Button } from 'components/common'
 
 
-const Login = () => {
+const Register = () => {
 
-  const { firebase } = useContext(FirebaseContext)
+  // const { firebase } = useContext(FirebaseContext)
   const [form, setForm] = useState({
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   })
+
+  console.log(form);
+
 
   const handleSubmit = e => {
     e.preventDefault()
-    firebase.login({
-      email: form.email,
-      password: form.password
-    }).then(() => navigate('/'))
+    // firebase.login({
+    //   email: form.email,
+    //   password: form.password
+    // }).then(() => navigate('/'))
   }
 
   const handleChange = e => {
@@ -33,7 +37,7 @@ const Login = () => {
 
   return (
     <section>
-      <SEO title="login" />
+      <SEO title="register" />
       <Form onSubmit={handleSubmit} >
 
         <Label htmlFor='email'>Email</Label>
@@ -54,6 +58,15 @@ const Login = () => {
           onChange={handleChange}
         />
 
+        <Label htmlFor='confirmPassword'>Confirm Password</Label>
+        <Input
+          type='confirmPassword'
+          name='confirmPassword'
+          placeholder='confirmPassword'
+          value={form.confirmPassword}
+          onChange={handleChange}
+        />
+
         <Button
           type='submit'
           block
@@ -65,4 +78,4 @@ const Login = () => {
 }
 
 
-export default Login
+export default Register

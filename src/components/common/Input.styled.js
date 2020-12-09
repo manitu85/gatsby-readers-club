@@ -16,7 +16,8 @@ const Input = styled.input`
   border: 1px solid #ddd;
   box-shadow: none;
 
-  &:focus, &:active{
+  &:focus,
+  &:active {
     border: 1px solid rebeccapurple;
   }
 `

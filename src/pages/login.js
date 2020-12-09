@@ -3,12 +3,13 @@ import { navigate } from 'gatsby'
 
 import SEO from "components/seo/seo"
 import { FirebaseContext } from 'src/firebase'
-import { Form, Label, Input, Button } from 'components/common'
+import { Form, Label, Input, Button, ErrorMessage } from 'components/common'
 
 
 const Login = () => {
 
   const { firebase } = useContext(FirebaseContext)
+  const [errorMessage, setErrorMessage] = useState('')
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -20,10 +21,15 @@ const Login = () => {
       email: form.email,
       password: form.password
     }).then(() => navigate('/'))
+      .catch(err => {
+        console.log(err)
+        setErrorMessage(err.message)
+      })
   }
 
   const handleChange = e => {
     e.persist()
+    setErrorMessage('')
     const { name, value } = e.target
     setForm(prevValues => ({
       ...prevValues,
@@ -43,6 +49,8 @@ const Login = () => {
           placeholder='email'
           value={form.email}
           onChange={handleChange}
+          minLength={6}
+          required
         />
 
         <Label htmlFor='password'>Password</Label>
@@ -52,7 +60,11 @@ const Login = () => {
           placeholder='password'
           value={form.password}
           onChange={handleChange}
+          minLength={6}
+          required
         />
+
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
 
         <Button
           type='submit'

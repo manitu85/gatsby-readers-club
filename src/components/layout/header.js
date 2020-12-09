@@ -8,9 +8,9 @@ import { FirebaseContext } from 'src/firebase'
 const Header = ({ siteTitle }) => {
 
   const { firebase, user } = useContext(FirebaseContext)
-  // console.log('firebase :>> ', firebase);
-  console.log('USER :>> ', user);
-  console.log('FIREBASE :>> ', firebase);
+
+  console.log('USER :>> ', user)
+  // console.log('FIREBASE :>> ', firebase)
 
   const handleLogout = () => {
     firebase.logout()

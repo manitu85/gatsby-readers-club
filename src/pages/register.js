@@ -8,31 +8,27 @@ import { Form, Label, Input, Button } from 'components/common'
 
 const Register = () => {
 
-  // const { firebase } = useContext(FirebaseContext)
+  const { firebase } = useContext(FirebaseContext)
   const [form, setForm] = useState({
     email: '',
     password: '',
     confirmPassword: ''
   })
 
-  console.log(form);
-
-
   const handleSubmit = e => {
     e.preventDefault()
-    // firebase.login({
-    //   email: form.email,
-    //   password: form.password
-    // }).then(() => navigate('/'))
+    if (form.password === form.confirmPassword) {
+      firebase.register({
+        email: form.email,
+        password: form.password
+      }).then(() => navigate('/'))
+    }
   }
 
   const handleChange = e => {
     e.persist()
     const { name, value } = e.target
-    setForm(prevValues => ({
-      ...prevValues,
-      [name]: value
-    }))
+    setForm(prevValues => ({ ...prevValues, [name]: value }))
   }
 
   return (
@@ -44,7 +40,7 @@ const Register = () => {
         <Input
           type='email'
           name='email'
-          placeholder='email'
+          placeholder='Email'
           value={form.email}
           onChange={handleChange}
         />
@@ -53,7 +49,7 @@ const Register = () => {
         <Input
           type='password'
           name='password'
-          placeholder='password'
+          placeholder='Password'
           value={form.password}
           onChange={handleChange}
         />
@@ -62,15 +58,12 @@ const Register = () => {
         <Input
           type='confirmPassword'
           name='confirmPassword'
-          placeholder='confirmPassword'
+          placeholder='Confirm Password'
           value={form.confirmPassword}
           onChange={handleChange}
         />
 
-        <Button
-          type='submit'
-          block
-        >Login</Button>
+        <Button type='submit' block>Register</Button>
 
       </Form>
     </section>

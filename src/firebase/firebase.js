@@ -18,7 +18,11 @@ class Firebase {
   }
 
   async logout() {
-    await this.auth.signOut();
+    await this.auth.signOut()
+  }
+
+  async register({ email, password }) {
+    await this.auth.createUserWithEmailAndPassword(email, password)
   }
 }
 

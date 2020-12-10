@@ -13,6 +13,14 @@ class Firebase {
     }
   }
 
+  getUserProfile({ userId }) {
+    return this.db.collection('publicProfiles')
+      .where('userId', '==', userId)
+      .get()
+    // .limit(1)
+    // .onSnapshot(onSnapshot)
+  }
+
   async login({ email, password }) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
@@ -21,8 +29,11 @@ class Firebase {
     await this.auth.signOut()
   }
 
-  async register({ email, password }) {
-    await this.auth.createUserWithEmailAndPassword(email, password)
+  async register({ email, password, username }) {
+    const newUser = await this.auth.createUserWithEmailAndPassword(email, password)
+    return this.db.collection('publicProfiles').doc(username).set({
+      userId: newUser.user.uid
+    })
   }
 }
 

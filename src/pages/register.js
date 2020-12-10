@@ -10,6 +10,7 @@ const Register = () => {
   const { firebase } = useContext(FirebaseContext)
   const [errorMessage, setErrorMessage] = useState('')
   const [form, setForm] = useState({
+    username: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -19,6 +20,7 @@ const Register = () => {
     e.preventDefault()
     if (form.password === form.confirmPassword) {
       firebase.register({
+        username: form.username,
         email: form.email,
         password: form.password
       }).then(() => navigate('/'))
@@ -42,6 +44,17 @@ const Register = () => {
     <section>
       <SEO title="register" />
       <Form onSubmit={handleSubmit} >
+
+        <Label htmlFor='username'>Username</Label>
+        <Input
+          type='username'
+          name='username'
+          placeholder='Username'
+          value={form.username}
+          onChange={handleChange}
+          minLength={6}
+          required
+        />
 
         <Label htmlFor='email'>Email</Label>
         <Input

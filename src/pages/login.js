@@ -5,7 +5,6 @@ import SEO from "components/seo/seo"
 import { FirebaseContext } from 'src/firebase'
 import { Form, Label, Input, Button, ErrorMessage } from 'components/common'
 
-
 const Login = () => {
 
   const { firebase } = useContext(FirebaseContext)

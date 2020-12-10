@@ -17,8 +17,22 @@ class Firebase {
     return this.db.collection('publicProfiles')
       .where('userId', '==', userId)
       .get()
-    // .limit(1)
-    // .onSnapshot(onSnapshot)
+  }
+
+  subscribeToBookComments({ bookId, onSnapshot }) {
+    const bookRef = this.db.collection('books').doc(bookId)
+    return this.db.collection('comments')
+      .where('book', '==', bookRef)
+      .onSnapshot(onSnapshot)
+  }
+
+  async register({ email, password, username }) {
+    const newUser = await this.auth.createUserWithEmailAndPassword(email, password)
+    return this.db.collection('publicProfiles')
+      .doc(username)
+      .set({
+        userId: newUser.user.uid
+      })
   }
 
   async login({ email, password }) {
@@ -29,12 +43,6 @@ class Firebase {
     await this.auth.signOut()
   }
 
-  async register({ email, password, username }) {
-    const newUser = await this.auth.createUserWithEmailAndPassword(email, password)
-    return this.db.collection('publicProfiles').doc(username).set({
-      userId: newUser.user.uid
-    })
-  }
 }
 
 let firebaseInstance;

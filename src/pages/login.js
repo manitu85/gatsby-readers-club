@@ -19,7 +19,8 @@ const Login = () => {
     firebase.login({
       email: form.email,
       password: form.password
-    }).then(() => navigate('/'))
+    })
+      .then(() => navigate('/'))
       .catch(err => {
         console.log(err)
         setErrorMessage(err.message)
